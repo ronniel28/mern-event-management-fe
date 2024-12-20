@@ -14,6 +14,7 @@ const register = async (userData) => {
 
 const login = async (credentials) => {
     try {
+        console.log(`${API_BASE_URL}/auth/login`, 'helloowwww');
         const response = await axios.post(`${API_BASE_URL}/auth/login`, credentials);
         const { token, user } = response.data;
         localStorage.setItem('token', token);
