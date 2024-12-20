@@ -4,7 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const register = async (userData) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/auth/register`, userData);
+        const response = await axios.post(`${API_BASE_URL}auth/register`, userData);
         return response.data;
     } catch (error) {
         console.error('Registration failed:', error);
@@ -14,8 +14,8 @@ const register = async (userData) => {
 
 const login = async (credentials) => {
     try {
-        console.log(`${API_BASE_URL}/auth/login`, 'helloowwww');
-        const response = await axios.post(`${API_BASE_URL}/auth/login`, credentials);
+        console.log(`${API_BASE_URL}auth/login`, 'helloowwww');
+        const response = await axios.post(`${API_BASE_URL}auth/login`, credentials);
         const { token, user } = response.data;
         localStorage.setItem('token', token);
         localStorage.setItem('name', user.name);
@@ -39,7 +39,7 @@ const getToken = () => localStorage.getItem('token');
 
 const fetchAllEvents = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/events`);
+        const response = await axios.get(`${API_BASE_URL}events`);
         return response.data; // Assuming the API returns an array of events with populated registrations
     } catch (error) {
         console.error('Error fetching events:', error);
@@ -49,7 +49,7 @@ const fetchAllEvents = async () => {
 
 const createEvent = async (eventData) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/events`, eventData, {
+        const response = await axios.post(`${API_BASE_URL}events`, eventData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -64,7 +64,7 @@ const createEvent = async (eventData) => {
 
 const updateEvent = async (eventId, eventData) => {
     try {
-        const response = await axios.put(`${API_BASE_URL}/events/${eventId}`, eventData, {
+        const response = await axios.put(`${API_BASE_URL}events/${eventId}`, eventData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -79,7 +79,7 @@ const updateEvent = async (eventId, eventData) => {
 
 const registerForEvent = async (eventData) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/registrations`, eventData, {
+        const response = await axios.post(`${API_BASE_URL}registrations`, eventData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
@@ -93,7 +93,7 @@ const registerForEvent = async (eventData) => {
 
 const cancelRegistration = async (registrationId) => {
     try {
-        const response = await axios.delete(`${API_BASE_URL}/registrations/${registrationId}`, {
+        const response = await axios.delete(`${API_BASE_URL}registrations/${registrationId}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
@@ -107,7 +107,7 @@ const cancelRegistration = async (registrationId) => {
 
 const checkRegistrationStatus = async (eventId) => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/registrations/status/${eventId}`, {
+        const response = await axios.get(`${API_BASE_URL}registrations/status/${eventId}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
