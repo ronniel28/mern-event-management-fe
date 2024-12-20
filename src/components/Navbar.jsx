@@ -51,9 +51,14 @@ const Navbar = () => {
               </li>
             </>
           ) : (
-            <li>
-              <Link to="/login" className="text-white hover:text-gray-300 transition duration-300">Login</Link>
-            </li>
+            <>
+              <li>
+                <Link to="/login" className="text-white hover:text-gray-300 transition duration-300">Login</Link>
+              </li>
+              <li>
+                <Link to="/register" className="text-white hover:text-gray-300 transition duration-300">Register</Link>
+              </li>
+            </>
           )}
         </ul>
       </div>
